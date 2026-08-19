@@ -7,6 +7,7 @@
 
 ## 在线体验
 
+(https://rainfall66.github.io/kayiba/)
 <!-- 部署到 GitHub Pages 后,把链接填在这里 -->
 <!-- 例如:https://你的用户名.github.io/kayi-ba/ -->
 
