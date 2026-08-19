@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#160a13" />
+  <title>卡一把 - 卡拉彼丘角色猜测游戏</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 开始页 -->
+  <div id="start-screen" class="screen">
+    <div class="hero">
+      <span class="kicker">卡拉彼丘 // 猜角色</span>
+      <h1>卡一把</h1>
+      <p class="subtitle">输入角色名,根据颜色反馈,5 次机会内猜出目标角色</p>
+      <button id="start-btn" class="btn btn-green btn-lg">开始游戏</button>
+      <button id="rules-trigger" class="link-btn">游戏规则</button>
+    </div>
+    <div class="footer">离线单机版 · 数据来源:卡拉彼丘WIKI</div>
+  </div>
+
+  <!-- 游戏页 -->
+  <div id="game-screen" class="screen hidden">
+    <div class="topbar">
+      <span class="brand">卡一把</span>
+      <span class="actions">
+        <button id="restart-btn" class="btn">重新开始</button>
+        <button id="giveup-btn" class="btn btn-warning">查看答案</button>
+        <button id="back-btn" class="btn">返回首页</button>
+      </span>
+    </div>
+    <div class="game-wrap">
+      <div class="status-line">
+        <span id="progress" class="progress-dots"></span>
+        <span style="color:var(--border)">|</span>
+        <span id="status-text">准备中…</span>
+      </div>
+      <div class="table-wrap">
+        <table class="board">
+          <thead>
+            <tr>
+              <th>角色名</th><th>年龄</th><th>阵营</th><th>定位</th>
+              <th>武器类型</th><th>性别</th><th>生日</th><th>类型</th>
+            </tr>
+          </thead>
+          <tbody id="board-body"></tbody>
+        </table>
+      </div>
+      <div class="legend">
+        <span><i class="legend-correct"></i>命中</span>
+        <span><i class="legend-close"></i>接近</span>
+        <span><i class="legend-wrong"></i>不匹配</span>
+      </div>
+      <div class="input-dock">
+        <div class="autocomplete">
+          <ul id="suggestions" class="suggestions"></ul>
+        </div>
+        <div class="input-bar">
+          <input id="guess-input" type="text" placeholder="输入角色名..." autocomplete="off" disabled />
+          <button id="guess-submit" class="btn btn-green" disabled>提交猜测</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 结算弹窗 -->
+  <div id="result-overlay" class="overlay">
+    <div id="result-tone" class="overlay-card">
+      <h2 id="result-title"></h2>
+      <p class="muted" id="result-stats"></p>
+      <div class="answer-name" id="result-name"></div>
+      <table class="info-table" id="result-info"></table>
+      <div class="overlay-actions">
+        <button id="again-btn" class="btn btn-green">再来一把</button>
+        <button id="view-btn" class="btn">查看对局</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 规则弹窗 -->
+  <div id="rules-overlay" class="overlay">
+    <div class="overlay-card">
+      <button id="rules-close" class="rule-close" aria-label="关闭">×</button>
+      <h2>游戏规则</h2>
+      <div class="rules-body">
+        <p>系统随机选一名角色作为答案(超弦体或晶源体),你输入角色名,每次猜测会新增一行,逐属性给出反馈。</p>
+        <h3>反馈颜色</h3>
+        <ul>
+          <li><b style="color:var(--green)">绿色(命中)</b> —— 阵营、定位、武器类型、性别、类型与答案相同</li>
+          <li><b style="color:var(--yellow)">黄色(接近)</b> —— 年龄相差 3 岁以内、生日相差 15 天以内</li>
+          <li><b style="color:var(--text-light)">灰色</b> —— 与答案差距较大,或该属性为未知("-")</li>
+          <li><b>箭头</b> —— 年龄提示目标更大/更小,生日提示更晚/更早(规则说明,棋盘上以箭头符号显示)</li>
+        </ul>
+        <h3>属性说明</h3>
+        <ul>
+          <li><b>阵营</b>:欧泊 / 剪刀手 / 乌尔比诺 / 晶源体</li>
+          <li><b>定位</b>:决斗 / 控场 / 守护 / 支援 / 先锋</li>
+          <li><b>武器类型</b>:自动步枪 / 精确射手步枪 / 狙击步枪 / 微型冲锋枪 / 机枪 / 霰弹枪</li>
+          <li><b>类型</b>:超弦体 / 晶源体</li>
+          <li><b>搜索</b>:支持别名联想,如 爆裂魔怪(贝利亚)、刺镰魔怪(粉莓)、冥荆皇女(蓝莓)、血荆皇女(草莓)</li>
+        </ul>
+        <h3>胜负</h3>
+        <p>角色名猜对即胜;5 次仍未猜中或主动查看答案则失败。</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="characters.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

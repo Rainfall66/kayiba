@@ -1,0 +1,323 @@
+// 卡一把 · 角色数据(来自卡拉彼丘WIKI)。新增/修改角色请编辑此文件。
+// 字段: nickname 角色名 / team 阵营 / role 定位(留空=未知,显示-) / weapon 武器类型 / gender 性别 / age 年龄 / birthday 生日(月*100+日,如 325=3月25日) / crystal 类型 / alias 搜索联想词
+window.KAYIBA_CHARACTERS = [
+ {
+  "nickname": "米雪儿·李",
+  "team": "欧泊",
+  "role": "守护",
+  "weapon": "自动步枪",
+  "gender": "女",
+  "age": 16,
+  "birthday": 325,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "明",
+  "team": "剪刀手",
+  "role": "决斗",
+  "weapon": "自动步枪",
+  "gender": "女",
+  "age": 20,
+  "birthday": 815,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "星绘",
+  "team": "乌尔比诺",
+  "role": "支援",
+  "weapon": "自动步枪",
+  "gender": "女",
+  "age": 18,
+  "birthday": 926,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "玛德蕾娜·利里",
+  "team": "乌尔比诺",
+  "role": "控场",
+  "weapon": "精确射手步枪",
+  "gender": "女",
+  "age": 16,
+  "birthday": 307,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "香奈美",
+  "team": "剪刀手",
+  "role": "先锋",
+  "weapon": "狙击步枪",
+  "gender": "女",
+  "age": 19,
+  "birthday": 127,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "白墨",
+  "team": "乌尔比诺",
+  "role": "决斗",
+  "weapon": "霰弹枪",
+  "gender": "男",
+  "age": 21,
+  "birthday": 1220,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "信",
+  "team": "欧泊",
+  "role": "守护",
+  "weapon": "精确射手步枪",
+  "gender": "男",
+  "age": 22,
+  "birthday": 711,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "心夏",
+  "team": "欧泊",
+  "role": "支援",
+  "weapon": "狙击步枪",
+  "gender": "女",
+  "age": 17,
+  "birthday": 1212,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "伊薇特",
+  "team": "欧泊",
+  "role": "控场",
+  "weapon": "微型冲锋枪",
+  "gender": "女",
+  "age": 16,
+  "birthday": 523,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "芙拉薇娅",
+  "team": "欧泊",
+  "role": "决斗",
+  "weapon": "微型冲锋枪",
+  "gender": "女",
+  "age": 26,
+  "birthday": 214,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "忧雾",
+  "team": "欧泊",
+  "role": "控场",
+  "weapon": "自动步枪",
+  "gender": "女",
+  "age": 18,
+  "birthday": 322,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "蕾欧娜",
+  "team": "欧泊",
+  "role": "守护",
+  "weapon": "机枪",
+  "gender": "女",
+  "age": 25,
+  "birthday": 1010,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "千代",
+  "team": "欧泊",
+  "role": "决斗",
+  "weapon": "精确射手步枪",
+  "gender": "女",
+  "age": 22,
+  "birthday": 110,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "拉薇",
+  "team": "剪刀手",
+  "role": "先锋",
+  "weapon": "自动步枪",
+  "gender": "女",
+  "age": 21,
+  "birthday": 1029,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "梅瑞狄斯",
+  "team": "剪刀手",
+  "role": "控场",
+  "weapon": "自动步枪",
+  "gender": "女",
+  "age": 19,
+  "birthday": 828,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "令",
+  "team": "剪刀手",
+  "role": "控场",
+  "weapon": "精确射手步枪",
+  "gender": "男",
+  "age": 24,
+  "birthday": 105,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "艾卡",
+  "team": "剪刀手",
+  "role": "决斗",
+  "weapon": "霰弹枪",
+  "gender": "女",
+  "age": 16,
+  "birthday": 1111,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "珐格兰丝",
+  "team": "剪刀手",
+  "role": "支援",
+  "weapon": "自动步枪",
+  "gender": "女",
+  "age": 22,
+  "birthday": 910,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "玛拉",
+  "team": "剪刀手",
+  "role": "决斗",
+  "weapon": "微型冲锋枪",
+  "gender": "女",
+  "age": 36,
+  "birthday": 401,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "奥黛丽·格罗夫",
+  "team": "乌尔比诺",
+  "role": "守护",
+  "weapon": "机枪",
+  "gender": "女",
+  "age": 19,
+  "birthday": 729,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "绯莎",
+  "team": "乌尔比诺",
+  "role": "决斗",
+  "weapon": "自动步枪",
+  "gender": "女",
+  "age": 16,
+  "birthday": 510,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "加拉蒂亚·利里",
+  "team": "乌尔比诺",
+  "role": "先锋",
+  "weapon": "自动步枪",
+  "gender": "女",
+  "age": 19,
+  "birthday": 222,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "汐",
+  "team": "乌尔比诺",
+  "role": "决斗",
+  "weapon": "霰弹枪",
+  "gender": "女",
+  "age": 19,
+  "birthday": 621,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "诺诺",
+  "team": "剪刀手",
+  "role": "先锋",
+  "weapon": "微型冲锋枪",
+  "gender": "女",
+  "age": 15,
+  "birthday": 1024,
+  "crystal": "超弦体",
+  "alias": ""
+ },
+ {
+  "nickname": "爆裂魔怪",
+  "team": "晶源体",
+  "role": "",
+  "weapon": "",
+  "gender": "男",
+  "age": 0,
+  "birthday": 0,
+  "crystal": "晶源体",
+  "alias": "贝利亚"
+ },
+ {
+  "nickname": "刺镰魔怪",
+  "team": "晶源体",
+  "role": "",
+  "weapon": "",
+  "gender": "男",
+  "age": 0,
+  "birthday": 0,
+  "crystal": "晶源体",
+  "alias": "粉莓"
+ },
+ {
+  "nickname": "莉莉丝",
+  "team": "晶源体",
+  "role": "",
+  "weapon": "",
+  "gender": "女",
+  "age": 0,
+  "birthday": 0,
+  "crystal": "晶源体",
+  "alias": ""
+ },
+ {
+  "nickname": "冥荆皇女",
+  "team": "晶源体",
+  "role": "",
+  "weapon": "",
+  "gender": "女",
+  "age": 0,
+  "birthday": 0,
+  "crystal": "晶源体",
+  "alias": "蓝莓"
+ },
+ {
+  "nickname": "血荆皇女",
+  "team": "晶源体",
+  "role": "",
+  "weapon": "",
+  "gender": "女",
+  "age": 0,
+  "birthday": 0,
+  "crystal": "晶源体",
+  "alias": "草莓"
+ }
+];
