@@ -212,6 +212,7 @@
     renderBoard();
     $('status-text').textContent = '输入角色名开始猜测,共 ' + MAX_GUESSES + ' 次机会';
     $('guess-input').disabled = false;
+    $('guess-submit').disabled = false;
     $('guess-input').focus();
   }
 
@@ -239,6 +240,8 @@
 
   function finish(result) {
     state.status = 'finished';
+    $('guess-input').disabled = true;
+    $('guess-submit').disabled = true;
     var stats = loadStats();
     if (result === 'won') {
       stats.wins += 1;
@@ -293,10 +296,10 @@
       li.textContent = c.nickname;
       li.className = index === 0 ? 'active' : '';
       li.onmousedown = function (event) {
+        // 只把候选填入输入框,提交由玩家手动点击"提交猜测"
         event.preventDefault();
         $('guess-input').value = c.nickname;
         closeSuggestions();
-        submitGuess(c);
       };
       list.appendChild(li);
     });
@@ -349,27 +352,28 @@
     });
 
     var input = $('guess-input');
-    $('guess-submit').addEventListener('click', function () {
+    // 手动提交:输入必须与某个角色名/别名完全一致
+    function submitFromInput() {
       if (state.status !== 'playing') return;
       var q = input.value.trim();
-      var character = findCharacter(q) || (suggestions.length ? suggestions[0] : null);
-      if (!character) { toast('请输入有效的角色名'); return; }
+      if (!q) { toast('请输入角色名'); return; }
+      var character = findCharacter(q);
+      if (!character) {
+        toast('没有完全匹配的角色,请从候选项中选择后提交');
+        return;
+      }
       input.value = character.nickname;
       closeSuggestions();
       submitGuess(character);
-    });
+    }
+    $('guess-submit').addEventListener('click', submitFromInput);
     input.addEventListener('input', updateSuggestions);
     input.addEventListener('focus', updateSuggestions);
     input.addEventListener('blur', function () { setTimeout(closeSuggestions, 150); });
     input.addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
         event.preventDefault();
-        if ($('suggestions').classList.contains('open') && suggestions.length) {
-          var character = findCharacter(suggestions[0].nickname) || suggestions[0];
-          $('guess-input').value = character.nickname;
-          closeSuggestions();
-          submitGuess(character);
-        }
+        submitFromInput();
       } else if (event.key === 'ArrowDown' && suggestions.length) {
         event.preventDefault();
         moveActive(1);
