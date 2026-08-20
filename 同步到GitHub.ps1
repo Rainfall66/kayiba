@@ -28,6 +28,19 @@ $changes = & $git status --porcelain
 if (-not $changes) { Write-Host '没有需要同步的更改 ✓'; exit 0 }
 
 & $git commit -m $message
+
+# 推送前先合并远端改动(网页端提交等),避免 push 被 rejected
+Write-Host '正在拉取远端最新改动...'
+& $git pull --rebase origin main
+if ($LASTEXITCODE -ne 0) {
+  Write-Host '拉取/合并远端改动时出现冲突,请手动处理后重试:'
+  Write-Host '  1) 解决冲突文件'
+  Write-Host '  2) git add .'
+  Write-Host '  3) git rebase --continue'
+  Write-Host '  4) git push origin main'
+  exit 1
+}
+
 & $git push origin main
 if ($LASTEXITCODE -ne 0) { Write-Host '推送失败,请检查网络/登录状态'; exit 1 }
 Write-Host "已同步到 GitHub ✓ 提交: $message"
