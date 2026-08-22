@@ -165,6 +165,22 @@ button, a { touch-action: manipulation; }
 .subtitle { color: var(--text-light); max-width: 34rem; }
 .hero .btn-green { margin-top: 12px; }
 .footer { text-align: center; color: var(--text-light); font-size: 0.78rem; padding: 16px; }
+.footer-links {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.footer-link:hover { color: var(--primary); }
 
 /* ---------- 游戏页 ---------- */
 .game-wrap {
