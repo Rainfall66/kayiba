@@ -1,8 +1,8 @@
 // 卡一把 · 角色数据(来自卡拉彼丘WIKI)。新增/修改角色请编辑此文件。
-// 字段: nickname 角色名 / team 阵营 / role 定位(留空=未知,显示-) / weapon 武器类型 / gender 性别 / age 年龄 / birthday 生日(月*100+日) / crystal 类型 / alias 搜索联想词
-// 生日格式规则: 日永远是最后两位, 月是前面剩余的数字(等价于零填充 MMDD)。
-//   如 325 = 3月25日, 105 = 01月05日 = 1月5日, 1010 = 10月10日; 0 = 未录入(显示 -, 对比按灰色)。
-//   非法日期(如 2月30日)会被视为未知, 不会产生错误判断。
+// 字段: nickname 角色名 / team 阵营 / role 定位(留空=未知,显示-) / weapon 武器类型 / gender 性别 / age 年龄 / birthday 生日(四位字符串 MMDD) / crystal 类型 / alias 搜索联想词
+// 生日格式规则: 用四位字符串 "MMDD" 表示, 一位数月份前补 0(注意 JS 数字字面量 0105 是八进制, 必须用字符串)。
+//   如 "0105" = 01月05日 = 1月5日, "0325" = 3月25日, "1010" = 10月10日; "0" = 未录入(显示 -, 对比按灰色)。
+//   非法日期(如 "0230" 2月30日)会被视为未知, 不会产生错误判断。
 window.KAYIBA_CHARACTERS = [
  {
   "nickname": "米雪儿·李",
@@ -11,7 +11,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "自动步枪",
   "gender": "女",
   "age": 16,
-  "birthday": 325,
+  "birthday": "0325",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -22,7 +22,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "自动步枪",
   "gender": "女",
   "age": 20,
-  "birthday": 815,
+  "birthday": "0815",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -33,7 +33,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "自动步枪",
   "gender": "女",
   "age": 18,
-  "birthday": 926,
+  "birthday": "0926",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -44,7 +44,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "精确射手步枪",
   "gender": "女",
   "age": 16,
-  "birthday": 307,
+  "birthday": "0307",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -55,7 +55,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "狙击步枪",
   "gender": "女",
   "age": 19,
-  "birthday": 127,
+  "birthday": "0127",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -66,7 +66,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "霰弹枪",
   "gender": "男",
   "age": 21,
-  "birthday": 1220,
+  "birthday": "1220",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -77,7 +77,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "精确射手步枪",
   "gender": "男",
   "age": 22,
-  "birthday": 711,
+  "birthday": "0711",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -88,7 +88,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "狙击步枪",
   "gender": "女",
   "age": 17,
-  "birthday": 1212,
+  "birthday": "1212",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -99,7 +99,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "微型冲锋枪",
   "gender": "女",
   "age": 16,
-  "birthday": 523,
+  "birthday": "0523",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -110,7 +110,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "微型冲锋枪",
   "gender": "女",
   "age": 26,
-  "birthday": 214,
+  "birthday": "0214",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -121,7 +121,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "自动步枪",
   "gender": "女",
   "age": 18,
-  "birthday": 322,
+  "birthday": "0322",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -132,7 +132,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "机枪",
   "gender": "女",
   "age": 25,
-  "birthday": 1010,
+  "birthday": "1010",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -143,7 +143,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "精确射手步枪",
   "gender": "女",
   "age": 22,
-  "birthday": 110,
+  "birthday": "0110",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -154,7 +154,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "自动步枪",
   "gender": "女",
   "age": 21,
-  "birthday": 1029,
+  "birthday": "1029",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -165,7 +165,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "自动步枪",
   "gender": "女",
   "age": 19,
-  "birthday": 828,
+  "birthday": "0828",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -176,7 +176,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "精确射手步枪",
   "gender": "男",
   "age": 24,
-  "birthday": 105,
+  "birthday": "0105",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -187,7 +187,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "霰弹枪",
   "gender": "女",
   "age": 16,
-  "birthday": 1111,
+  "birthday": "1111",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -198,7 +198,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "自动步枪",
   "gender": "女",
   "age": 22,
-  "birthday": 910,
+  "birthday": "0910",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -209,7 +209,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "微型冲锋枪",
   "gender": "女",
   "age": 36,
-  "birthday": 401,
+  "birthday": "0401",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -220,7 +220,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "机枪",
   "gender": "女",
   "age": 19,
-  "birthday": 729,
+  "birthday": "0729",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -231,7 +231,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "自动步枪",
   "gender": "女",
   "age": 16,
-  "birthday": 510,
+  "birthday": "0510",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -242,7 +242,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "自动步枪",
   "gender": "女",
   "age": 19,
-  "birthday": 222,
+  "birthday": "0222",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -253,7 +253,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "霰弹枪",
   "gender": "女",
   "age": 19,
-  "birthday": 621,
+  "birthday": "0621",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -264,7 +264,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "微型冲锋枪",
   "gender": "女",
   "age": 15,
-  "birthday": 1024,
+  "birthday": "1024",
   "crystal": "超弦体",
   "alias": ""
  },
@@ -275,7 +275,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "",
   "gender": "男",
   "age": 0,
-  "birthday": 0,
+  "birthday": "0",
   "crystal": "晶源体",
   "alias": "贝利亚"
  },
@@ -286,7 +286,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "",
   "gender": "男",
   "age": 0,
-  "birthday": 0,
+  "birthday": "0",
   "crystal": "晶源体",
   "alias": "粉莓"
  },
@@ -297,7 +297,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "",
   "gender": "女",
   "age": 0,
-  "birthday": 0,
+  "birthday": "0",
   "crystal": "晶源体",
   "alias": ""
  },
@@ -308,7 +308,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "",
   "gender": "女",
   "age": 0,
-  "birthday": 0,
+  "birthday": "0",
   "crystal": "晶源体",
   "alias": "蓝莓"
  },
@@ -319,7 +319,7 @@ window.KAYIBA_CHARACTERS = [
   "weapon": "",
   "gender": "女",
   "age": 0,
-  "birthday": 0,
+  "birthday": "0",
   "crystal": "晶源体",
   "alias": "草莓"
  }

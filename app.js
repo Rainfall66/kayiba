@@ -16,10 +16,14 @@
   var AGE_CLOSE = 3;
   var BIRTHDAY_CLOSE_DAYS = 15;
 
-  /** 解析生日:约定"日永远是最后两位,月是前面剩余的数字"(等价于零填充 MMDD)。
-   *  如 105 = 01月05日(1月5日)、127 = 01月27日、1010 = 10月10日。
-   *  返回 { month, day };非法日期(2月30日、4月31日等)返回 null,按未知处理。 */
+  /** 解析生日。数据格式:四位字符串 "MMDD"(如 "0105"=1月5日、"1010"=10月10日;"0"=未录入);
+   *  兼容旧数字格式(月*100+日,如 105=1月5日)。非法日期(2月30日、4月31日等)返回 null,按未知处理。 */
   function parseMonthDay(value) {
+    if (typeof value === 'string') {
+      if (value === '0') return null;
+      if (!/^\d{4}$/.test(value)) return null;
+      value = Number(value);
+    }
     if (!Number.isInteger(value) || value <= 0) return null;
     var month = Math.floor(value / 100);
     var day = value % 100;
@@ -55,15 +59,16 @@
   }
 
   function birthdayAttr(guessValue, targetValue) {
-    if (guessValue === 0 || targetValue === 0) return { value: guessValue, level: 'wrong' };
-    if (guessValue === targetValue) return { value: guessValue, level: 'correct' };
-    var g = dayOfYear(guessValue);
-    var t = dayOfYear(targetValue);
-    if (g === null || t === null) return { value: guessValue, level: 'wrong' };
-    var raw = Math.abs(g - t);
+    var g = parseMonthDay(guessValue);
+    var t = parseMonthDay(targetValue);
+    if (!g || !t) return { value: guessValue, level: 'wrong' };
+    if (g.month === t.month && g.day === t.day) return { value: guessValue, level: 'correct' };
+    var gDay = dayOfYear(guessValue);
+    var tDay = dayOfYear(targetValue);
+    var raw = Math.abs(gDay - tDay);
     var diff = Math.min(raw, 366 - raw);
     var level = diff <= BIRTHDAY_CLOSE_DAYS ? 'close' : 'wrong';
-    var hint = ((t - g + 366) % 366) <= 183 ? 'higher' : 'lower';
+    var hint = ((tDay - gDay + 366) % 366) <= 183 ? 'higher' : 'lower';
     return { value: guessValue, level: level, hint: hint };
   }
 
