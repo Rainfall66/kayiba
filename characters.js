@@ -1,5 +1,8 @@
 // 卡一把 · 角色数据(来自卡拉彼丘WIKI)。新增/修改角色请编辑此文件。
-// 字段: nickname 角色名 / team 阵营 / role 定位(留空=未知,显示-) / weapon 武器类型 / gender 性别 / age 年龄 / birthday 生日(月*100+日,如 325=3月25日) / crystal 类型 / alias 搜索联想词
+// 字段: nickname 角色名 / team 阵营 / role 定位(留空=未知,显示-) / weapon 武器类型 / gender 性别 / age 年龄 / birthday 生日(月*100+日) / crystal 类型 / alias 搜索联想词
+// 生日格式规则: 日永远是最后两位, 月是前面剩余的数字(等价于零填充 MMDD)。
+//   如 325 = 3月25日, 105 = 01月05日 = 1月5日, 1010 = 10月10日; 0 = 未录入(显示 -, 对比按灰色)。
+//   非法日期(如 2月30日)会被视为未知, 不会产生错误判断。
 window.KAYIBA_CHARACTERS = [
  {
   "nickname": "米雪儿·李",

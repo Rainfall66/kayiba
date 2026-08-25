@@ -16,22 +16,29 @@
   var AGE_CLOSE = 3;
   var BIRTHDAY_CLOSE_DAYS = 15;
 
-  function dayOfYear(value) {
+  /** 解析生日:约定"日永远是最后两位,月是前面剩余的数字"(等价于零填充 MMDD)。
+   *  如 105 = 01月05日(1月5日)、127 = 01月27日、1010 = 10月10日。
+   *  返回 { month, day };非法日期(2月30日、4月31日等)返回 null,按未知处理。 */
+  function parseMonthDay(value) {
     if (!Number.isInteger(value) || value <= 0) return null;
     var month = Math.floor(value / 100);
     var day = value % 100;
-    if (month < 1 || month > 12 || day < 1 || day > 31) return null;
-    var result = day;
-    for (var i = 0; i < month - 1; i++) result += MONTH_DAYS[i];
+    if (month < 1 || month > 12 || day < 1) return null;
+    if (day > MONTH_DAYS[month - 1]) return null;
+    return { month: month, day: day };
+  }
+
+  function dayOfYear(value) {
+    var md = parseMonthDay(value);
+    if (!md) return null;
+    var result = md.day;
+    for (var i = 0; i < md.month - 1; i++) result += MONTH_DAYS[i];
     return result;
   }
 
   function birthdayLabel(value) {
-    if (!Number.isInteger(value) || value <= 0) return '';
-    var month = Math.floor(value / 100);
-    var day = value % 100;
-    if (month < 1 || month > 12 || day < 1 || day > 31) return '';
-    return month + '月' + day + '日';
+    var md = parseMonthDay(value);
+    return md ? md.month + '月' + md.day + '日' : '';
   }
 
   function exactAttr(guessValue, targetValue) {
