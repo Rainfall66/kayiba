@@ -65,10 +65,12 @@
     if (g.month === t.month && g.day === t.day) return { value: guessValue, level: 'correct' };
     var gDay = dayOfYear(guessValue);
     var tDay = dayOfYear(targetValue);
+    // 黄色(接近):一年内相差 ≤15 天(环形,跨年也算)
     var raw = Math.abs(gDay - tDay);
     var diff = Math.min(raw, 366 - raw);
     var level = diff <= BIRTHDAY_CLOSE_DAYS ? 'close' : 'wrong';
-    var hint = ((tDay - gDay + 366) % 366) <= 183 ? 'higher' : 'lower';
+    // 箭头:按自然年内排名(非环形)——目标在自然年里更晚(排名更靠后)= ▲,更早 = ▼
+    var hint = tDay > gDay ? 'higher' : 'lower';
     return { value: guessValue, level: level, hint: hint };
   }
 
