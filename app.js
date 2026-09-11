@@ -91,10 +91,18 @@
     };
   }
 
+  /** 随机挑一张立绘(对局开始时确定并固定,避免重渲染时换图);无图返回 '' */
+  function pickPortrait(character) {
+    var list = (character && character.images) || [];
+    if (!list.length) return '';
+    return list[Math.floor(Math.random() * list.length)];
+  }
+
   KAYIBA.MAX_GUESSES = MAX_GUESSES;
   KAYIBA.compare = compare;
   KAYIBA.dayOfYear = dayOfYear;
   KAYIBA.birthdayLabel = birthdayLabel;
+  KAYIBA.pickPortrait = pickPortrait;
 
   var CHARACTERS = (typeof window !== 'undefined' && window.KAYIBA_CHARACTERS) || [];
   KAYIBA.characters = CHARACTERS;
@@ -110,7 +118,7 @@
   var STATS_KEY = 'kayi-ba:stats';
   var RECENT_WINDOW_MS = 60 * 60 * 1000;
 
-  var state = { target: null, guesses: [], status: 'ready' };
+  var state = { target: null, guesses: [], status: 'ready', portrait: '' };
   var $ = function (id) { return document.getElementById(id); };
 
   function storageGet(key) {
@@ -195,7 +203,10 @@
       var tr = document.createElement('tr');
       if (index === state.guesses.length - 1) tr.className = 'row-latest';
       if (row.correct) tr.className = (tr.className ? tr.className + ' ' : '') + 'row-correct';
-      tr.innerHTML = '<td class="name' + (row.correct ? ' correct' : '') + '">' + escapeHtml(row.nickname) + '</td>'
+      var avatarHtml = row.avatar
+        ? '<img class="row-avatar" src="' + escapeHtml(row.avatar) + '" alt="" loading="lazy" onerror="this.remove()" />'
+        : '';
+      tr.innerHTML = '<td class="name' + (row.correct ? ' correct' : '') + '">' + avatarHtml + escapeHtml(row.nickname) + '</td>'
         + cellHtml(row.attrs.age)
         + cellHtml(row.attrs.team)
         + cellHtml(row.attrs.role)
@@ -221,6 +232,7 @@
     state.target = pickTarget();
     state.guesses = [];
     state.status = 'playing';
+    state.portrait = pickPortrait(state.target);
     $('guess-input').value = '';
     closeSuggestions();
     renderBoard();
@@ -237,6 +249,7 @@
       return;
     }
     var row = compare(character, state.target);
+    row.avatar = character.avatar || '';
     row.guessedAt = Date.now();
     state.guesses.push(row);
     renderBoard();
@@ -285,6 +298,15 @@
       + '<tr><td class="label">生日</td><td>' + escapeHtml(birthdayLabel(t.birthday) || '-') + '</td></tr>'
       + '<tr><td class="label">类型</td><td>' + escapeHtml(t.crystal || '-') + '</td></tr>'
       + '<tr><td class="label">年龄</td><td>' + (t.age > 0 ? t.age + ' 岁' : '-') + '</td></tr>';
+    var portrait = $('result-portrait');
+    var portraitWrap = $('result-portrait-wrap');
+    if (state.portrait) {
+      portrait.src = state.portrait;
+      portraitWrap.classList.remove('hidden');
+    } else {
+      portrait.removeAttribute('src');
+      portraitWrap.classList.add('hidden');
+    }
     $('result-overlay').classList.add('show');
   }
 
@@ -307,7 +329,16 @@
     if (!suggestions.length) { list.classList.remove('open'); return; }
     suggestions.forEach(function (c, index) {
       var li = document.createElement('li');
-      li.textContent = c.nickname;
+      if (c.avatar) {
+        var thumb = document.createElement('img');
+        thumb.className = 'sug-avatar';
+        thumb.src = c.avatar;
+        thumb.alt = '';
+        thumb.loading = 'lazy';
+        thumb.onerror = function () { this.remove(); };
+        li.appendChild(thumb);
+      }
+      li.appendChild(document.createTextNode(c.nickname));
       li.className = index === 0 ? 'active' : '';
       li.onmousedown = function (event) {
         // 只把候选填入输入框,提交由玩家手动点击"提交猜测"
@@ -357,6 +388,10 @@
     });
     $('result-overlay').addEventListener('mousedown', function (event) {
       if (event.target === $('result-overlay')) hideResult();
+    });
+    // 立绘加载失败时收起图片区,避免出现破图
+    $('result-portrait').addEventListener('error', function () {
+      $('result-portrait-wrap').classList.add('hidden');
     });
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') {

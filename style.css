@@ -413,6 +413,49 @@ table.board { width: 100%; border-collapse: separate; border-spacing: 6px 5px; f
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* ---------- 图片(头像 / 立绘) ---------- */
+.row-avatar {
+  width: 26px;
+  height: 26px;
+  margin-right: 7px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: -8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+}
+
+.suggestions li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sug-avatar {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+}
+
+.result-portrait-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 2px 0 14px;
+}
+.result-portrait-wrap.hidden { display: none; }
+.result-portrait {
+  max-width: 100%;
+  max-height: 44vh;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+}
+
 /* ---------- 手机端(与在线版 responsive.css 一致) ---------- */
 @media (max-width: 640px) {
   body { padding-bottom: env(safe-area-inset-bottom); }
@@ -487,6 +530,10 @@ table.board { width: 100%; border-collapse: separate; border-spacing: 6px 5px; f
   .overlay-actions { flex-direction: column; }
   .overlay-actions .btn { width: 100%; min-height: 44px; }
   .info-table td { padding: 7px 4px; font-size: 0.84rem; }
+
+  .row-avatar { width: 20px; height: 20px; margin-right: 4px; vertical-align: -6px; }
+  .sug-avatar { width: 22px; height: 22px; }
+  .result-portrait { max-height: 36vh; border-radius: 10px; }
 
   .footer { font-size: 0.7rem; padding: 10px; }
 }

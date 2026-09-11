@@ -1,5 +1,7 @@
 // 卡一把 · 角色数据(来自卡拉彼丘WIKI)。新增/修改角色请编辑此文件。
-// 字段: nickname 角色名 / team 阵营 / role 定位(留空=未知,显示-) / weapon 武器类型 / gender 性别 / age 年龄 / birthday 生日(四位字符串 MMDD) / crystal 类型 / alias 搜索联想词
+// 字段: nickname 角色名 / team 阵营 / role 定位(留空=未知,显示-) / weapon 武器类型 / gender 性别 / age 年龄 / birthday 生日(四位字符串 MMDD) / crystal 类型 / alias 搜索联想词 / avatar 小头像 / images 立绘数组(随机取一张)
+// 图片说明: 均下载自卡拉彼丘WIKI(头像 200px、立绘 320px,保留透明通道), 存于 images/ 目录, 文件名用 ASCII 拼音 slug。
+//   新增角色时: 把图片放进 images/, 在 avatar 填头像路径, 在 images 里列出 1~N 张立绘(游戏内随机展示一张)。
 // 生日格式规则: 用四位字符串 "MMDD" 表示, 一位数月份前补 0(注意 JS 数字字面量 0105 是八进制, 必须用字符串)。
 //   如 "0105" = 01月05日 = 1月5日, "0325" = 3月25日, "1010" = 10月10日; "0" = 未录入(显示 -, 对比按灰色)。
 //   非法日期(如 "0230" 2月30日)会被视为未知, 不会产生错误判断。
@@ -13,7 +15,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 16,
   "birthday": "0325",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/mixueer-li-avatar.png",
+  "images": ["images/mixueer-li-1.png", "images/mixueer-li-2.png", "images/mixueer-li-3.png"]
  },
  {
   "nickname": "明",
@@ -24,7 +28,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 20,
   "birthday": "0815",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/ming-avatar.png",
+  "images": ["images/ming-1.png", "images/ming-2.png", "images/ming-3.png"]
  },
  {
   "nickname": "星绘",
@@ -35,7 +41,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 18,
   "birthday": "0926",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/xinghui-avatar.png",
+  "images": ["images/xinghui-1.png", "images/xinghui-2.png", "images/xinghui-3.png"]
  },
  {
   "nickname": "玛德蕾娜·利里",
@@ -46,7 +54,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 16,
   "birthday": "0307",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/madeleina-lili-avatar.png",
+  "images": ["images/madeleina-lili-1.png", "images/madeleina-lili-2.png", "images/madeleina-lili-3.png"]
  },
  {
   "nickname": "香奈美",
@@ -57,7 +67,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 19,
   "birthday": "0127",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/xiangnaimei-avatar.png",
+  "images": ["images/xiangnaimei-1.png", "images/xiangnaimei-2.png", "images/xiangnaimei-3.png"]
  },
  {
   "nickname": "白墨",
@@ -68,7 +80,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 21,
   "birthday": "1220",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/baimo-avatar.png",
+  "images": ["images/baimo-1.png", "images/baimo-2.png", "images/baimo-3.png"]
  },
  {
   "nickname": "信",
@@ -79,7 +93,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 22,
   "birthday": "0711",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/xin-avatar.png",
+  "images": ["images/xin-1.png", "images/xin-2.png", "images/xin-3.png"]
  },
  {
   "nickname": "心夏",
@@ -90,7 +106,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 17,
   "birthday": "1212",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/xinxia-avatar.png",
+  "images": ["images/xinxia-1.png", "images/xinxia-2.png", "images/xinxia-3.png"]
  },
  {
   "nickname": "伊薇特",
@@ -101,7 +119,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 16,
   "birthday": "0523",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/yiweite-avatar.png",
+  "images": ["images/yiweite-1.png", "images/yiweite-2.png", "images/yiweite-3.png"]
  },
  {
   "nickname": "芙拉薇娅",
@@ -112,7 +132,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 26,
   "birthday": "0214",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/fulaweiya-avatar.png",
+  "images": ["images/fulaweiya-1.png", "images/fulaweiya-2.png", "images/fulaweiya-3.png"]
  },
  {
   "nickname": "忧雾",
@@ -123,7 +145,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 18,
   "birthday": "0322",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/youwu-avatar.png",
+  "images": ["images/youwu-1.png", "images/youwu-2.png", "images/youwu-3.png"]
  },
  {
   "nickname": "蕾欧娜",
@@ -134,7 +158,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 25,
   "birthday": "1010",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/leiouna-avatar.png",
+  "images": ["images/leiouna-1.png", "images/leiouna-2.png", "images/leiouna-3.png"]
  },
  {
   "nickname": "千代",
@@ -145,7 +171,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 22,
   "birthday": "0110",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/qiandai-avatar.png",
+  "images": ["images/qiandai-1.png", "images/qiandai-2.png", "images/qiandai-3.png"]
  },
  {
   "nickname": "拉薇",
@@ -156,7 +184,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 21,
   "birthday": "1029",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/lawei-avatar.png",
+  "images": ["images/lawei-1.png", "images/lawei-2.png", "images/lawei-3.png"]
  },
  {
   "nickname": "梅瑞狄斯",
@@ -167,7 +197,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 19,
   "birthday": "0828",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/meiruidisi-avatar.png",
+  "images": ["images/meiruidisi-1.png", "images/meiruidisi-2.png", "images/meiruidisi-3.png"]
  },
  {
   "nickname": "令",
@@ -178,7 +210,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 24,
   "birthday": "0105",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/ling-avatar.png",
+  "images": ["images/ling-1.png", "images/ling-2.png", "images/ling-3.png"]
  },
  {
   "nickname": "艾卡",
@@ -189,7 +223,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 16,
   "birthday": "1111",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/aika-avatar.png",
+  "images": ["images/aika-1.png", "images/aika-2.png", "images/aika-3.png"]
  },
  {
   "nickname": "珐格兰丝",
@@ -200,7 +236,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 22,
   "birthday": "0910",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/fagelansi-avatar.png",
+  "images": ["images/fagelansi-1.png", "images/fagelansi-2.png", "images/fagelansi-3.png"]
  },
  {
   "nickname": "玛拉",
@@ -211,7 +249,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 36,
   "birthday": "0401",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/mala-avatar.png",
+  "images": ["images/mala-1.png", "images/mala-2.png", "images/mala-3.png"]
  },
  {
   "nickname": "奥黛丽·格罗夫",
@@ -222,7 +262,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 19,
   "birthday": "0729",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/aodaili-geluofu-avatar.png",
+  "images": ["images/aodaili-geluofu-1.png", "images/aodaili-geluofu-2.png", "images/aodaili-geluofu-3.png"]
  },
  {
   "nickname": "绯莎",
@@ -233,7 +275,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 16,
   "birthday": "0510",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/feisha-avatar.png",
+  "images": ["images/feisha-1.png", "images/feisha-2.png", "images/feisha-3.png"]
  },
  {
   "nickname": "加拉蒂亚·利里",
@@ -244,7 +288,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 19,
   "birthday": "0222",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/jialadiya-lili-avatar.png",
+  "images": ["images/jialadiya-lili-1.png", "images/jialadiya-lili-2.png", "images/jialadiya-lili-3.png"]
  },
  {
   "nickname": "汐",
@@ -255,7 +301,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 19,
   "birthday": "0621",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/xi-avatar.png",
+  "images": ["images/xi-1.png", "images/xi-2.png", "images/xi-3.png"]
  },
  {
   "nickname": "诺诺",
@@ -266,7 +314,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 15,
   "birthday": "1024",
   "crystal": "超弦体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/nuonuo-avatar.png",
+  "images": ["images/nuonuo-1.png", "images/nuonuo-2.png"]
  },
  {
   "nickname": "爆裂魔怪",
@@ -277,7 +327,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 0,
   "birthday": "0",
   "crystal": "晶源体",
-  "alias": "贝利亚"
+  "alias": "贝利亚",
+  "avatar": "images/baoliemoguai-avatar.png",
+  "images": ["images/baoliemoguai-1.png"]
  },
  {
   "nickname": "刺镰魔怪",
@@ -288,7 +340,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 0,
   "birthday": "0",
   "crystal": "晶源体",
-  "alias": "粉莓"
+  "alias": "粉莓",
+  "avatar": "images/cilianmoguai-avatar.png",
+  "images": ["images/cilianmoguai-1.png"]
  },
  {
   "nickname": "莉莉丝",
@@ -299,7 +353,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 0,
   "birthday": "0",
   "crystal": "晶源体",
-  "alias": ""
+  "alias": "",
+  "avatar": "images/lilisi-avatar.png",
+  "images": ["images/lilisi-1.png", "images/lilisi-2.png", "images/lilisi-3.png"]
  },
  {
   "nickname": "冥荆皇女",
@@ -310,7 +366,9 @@ window.KAYIBA_CHARACTERS = [
   "age": 0,
   "birthday": "0",
   "crystal": "晶源体",
-  "alias": "蓝莓"
+  "alias": "蓝莓",
+  "avatar": "images/mingjinghuangnv-avatar.png",
+  "images": ["images/mingjinghuangnv-1.png"]
  },
  {
   "nickname": "血荆皇女",
@@ -321,6 +379,8 @@ window.KAYIBA_CHARACTERS = [
   "age": 0,
   "birthday": "0",
   "crystal": "晶源体",
-  "alias": "草莓"
+  "alias": "草莓",
+  "avatar": "images/xuejinghuangnv-avatar.png",
+  "images": ["images/xuejinghuangnv-1.png"]
  }
 ];
