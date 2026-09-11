@@ -235,6 +235,14 @@ table.board { width: 100%; border-collapse: separate; border-spacing: 6px 5px; f
   white-space: nowrap;
 }
 .board td.name { font-weight: 700; text-align: left; }
+/* 注意:td 必须保持 table-cell,直接给 td 设 display:flex 会让它脱离表格布局、
+   整行列位错乱。所以头像与名字的横向对齐放在内层 .name-cell 上。 */
+.name-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.name-text { min-width: 0; overflow-wrap: anywhere; }
 .board th:nth-child(1), .board td:nth-child(1) { width: 18%; }
 .board th:nth-child(2), .board td:nth-child(2) { width: 12%; }
 .board th:nth-child(3), .board td:nth-child(3) { width: 12%; }
@@ -306,7 +314,7 @@ table.board { width: 100%; border-collapse: separate; border-spacing: 6px 5px; f
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  max-height: 240px;
+  max-height: 320px;
   overflow-y: auto;
   display: none;
   list-style: none;
@@ -314,7 +322,11 @@ table.board { width: 100%; border-collapse: separate; border-spacing: 6px 5px; f
 }
 .suggestions.open { display: block; }
 .suggestions li {
-  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
   color: var(--text);
@@ -414,30 +426,33 @@ table.board { width: 100%; border-collapse: separate; border-spacing: 6px 5px; f
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ---------- 图片(头像 / 立绘) ---------- */
+/* 猜测行小头像:默认 40px,保证在棋盘上也一眼认得出是谁 */
 .row-avatar {
-  width: 26px;
-  height: 26px;
-  margin-right: 7px;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  vertical-align: -8px;
-  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
 }
 
-.suggestions li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+/* 候选列表小头像 */
 .sug-avatar {
-  width: 26px;
-  height: 26px;
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+}
+.sug-name {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1rem;
 }
 
 .result-portrait-wrap {
@@ -454,6 +469,25 @@ table.board { width: 100%; border-collapse: separate; border-spacing: 6px 5px; f
   border-radius: 12px;
   border: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+}
+
+/* ---------- 平板 / 小笔记本(641 ~ 1024px) ---------- */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .row-avatar { width: 36px; height: 36px; }
+  .sug-avatar { width: 36px; height: 36px; }
+  .suggestions li { min-height: 52px; }
+  .result-portrait { max-height: 40vh; }
+}
+
+/* ---------- 横屏手机 / 矮视口:收一收纵向占用,别让内容被挤没 ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { gap: 10px; padding: 14px 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .status-line { padding: 4px; }
+  .suggestions { max-height: 62dvh; }
+  .overlay-card { padding: 16px; }
+  .result-portrait { max-height: 56vh; }
+  .result-portrait-wrap { margin-bottom: 8px; }
 }
 
 /* ---------- 手机端(与在线版 responsive.css 一致) ---------- */
@@ -531,9 +565,20 @@ table.board { width: 100%; border-collapse: separate; border-spacing: 6px 5px; f
   .overlay-actions .btn { width: 100%; min-height: 44px; }
   .info-table td { padding: 7px 4px; font-size: 0.84rem; }
 
-  .row-avatar { width: 20px; height: 20px; margin-right: 4px; vertical-align: -6px; }
-  .sug-avatar { width: 22px; height: 22px; }
-  .result-portrait { max-height: 36vh; border-radius: 10px; }
+  /* 手机端:头像缩小但仍保持辨识度;角色名列加宽,避免头像与名字挤在一起 */
+  .board th:nth-child(1), .board td:nth-child(1) { width: 24%; }
+  .board th:nth-child(2), .board td:nth-child(2) { width: 11%; }
+  .board th:nth-child(3), .board td:nth-child(3) { width: 11%; }
+  .board th:nth-child(4), .board td:nth-child(4) { width: 9%; }
+  .board th:nth-child(5), .board td:nth-child(5) { width: 11%; }
+  .board th:nth-child(6), .board td:nth-child(6) { width: 9%; }
+  .board th:nth-child(7), .board td:nth-child(7) { width: 11%; }
+  .board th:nth-child(8), .board td:nth-child(8) { width: 14%; }
+  .name-cell { gap: 6px; }
+  .row-avatar { width: 32px; height: 32px; }
+  .sug-avatar { width: 36px; height: 36px; }
+  .suggestions li { min-height: 52px; padding: 6px 10px; }
+  .result-portrait { max-height: 40vh; border-radius: 10px; }
 
   .footer { font-size: 0.7rem; padding: 10px; }
 }
@@ -544,4 +589,7 @@ table.board { width: 100%; border-collapse: separate; border-spacing: 6px 5px; f
   .board td { padding: 5px 1px; font-size: 0.66rem; }
   .board td .dir { font-size: 7px; }
   .topbar .actions .btn { padding: 6px 8px; font-size: 0.76rem; }
+  .row-avatar { width: 28px; height: 28px; }
+  .sug-avatar { width: 32px; height: 32px; }
+  .suggestions li { min-height: 48px; }
 }

@@ -252,7 +252,9 @@
       var avatarHtml = row.avatar
         ? '<img class="row-avatar" src="' + escapeHtml(row.avatar) + '" alt="" loading="lazy" onerror="this.remove()" />'
         : '';
-      tr.innerHTML = '<td class="name' + (row.correct ? ' correct' : '') + '">' + avatarHtml + escapeHtml(row.nickname) + '</td>'
+      tr.innerHTML = '<td class="name' + (row.correct ? ' correct' : '') + '">'
+        + '<div class="name-cell">' + avatarHtml
+        + '<span class="name-text">' + escapeHtml(row.nickname) + '</span></div></td>'
         + cellHtml(row.attrs.age)
         + cellHtml(row.attrs.team)
         + cellHtml(row.attrs.role)
@@ -381,7 +383,10 @@
         thumb.onerror = function () { this.remove(); };
         li.appendChild(thumb);
       }
-      li.appendChild(document.createTextNode(c.nickname));
+      var label = document.createElement('span');
+      label.className = 'sug-name';
+      label.textContent = c.nickname;
+      li.appendChild(label);
       li.className = index === 0 ? 'active' : '';
       li.onmousedown = function (event) {
         // 只把候选填入输入框,提交由玩家手动点击"提交猜测"
