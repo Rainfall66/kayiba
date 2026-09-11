@@ -98,11 +98,56 @@
     return list[Math.floor(Math.random() * list.length)];
   }
 
+  /** 归一化联想串:小写、去掉空格/中点/连字符等分隔符,ü 统一写成 u(v) */
+  function normalizeSearch(text) {
+    return String(text == null ? '' : text)
+      .toLowerCase()
+      .replace(/[\s\u00b7\-_'’.,,.]/g, '')
+      .replace(/v/g, 'u');
+  }
+
+  /** 单个角色的联想优先级(越小越靠前);null = 不匹配。
+   *  顺序:角色名精确 > 别名精确 > 角色名前缀 > 全拼精确 > 首字母精确 > 角色名包含 > 别名包含 > 全拼包含 > 首字母包含 */
+  function matchRank(character, query) {
+    if (!query) return null;
+    var nickname = normalizeSearch(character.nickname);
+    var alias = normalizeSearch(character.alias);
+    var pinyin = normalizeSearch(character.pinyin);
+    var abbr = normalizeSearch(character.pinyinAbbr);
+    if (nickname === query) return 0;
+    if (alias && alias === query) return 1;
+    if (nickname.indexOf(query) === 0) return 2;
+    if (pinyin && pinyin === query) return 3;
+    if (abbr && abbr === query) return 4;
+    if (nickname.indexOf(query) !== -1) return 5;
+    if (alias && alias.indexOf(query) !== -1) return 6;
+    if (pinyin && pinyin.indexOf(query) !== -1) return 7;
+    if (abbr && abbr.indexOf(query) !== -1) return 8;
+    return null;
+  }
+
+  /** 联想搜索:支持中文名 / 别名 / 全拼 / 首字母缩写;同分保持原数据顺序。
+   *  仅用于候选联想,不参与提交判定(见 findCharacter)。 */
+  function searchCharacters(list, input, limit) {
+    var query = normalizeSearch(input);
+    if (!query) return [];
+    var hits = [];
+    list.forEach(function (c, index) {
+      var rank = matchRank(c, query);
+      if (rank !== null) hits.push({ c: c, rank: rank, index: index });
+    });
+    hits.sort(function (a, b) { return a.rank - b.rank || a.index - b.index; });
+    return hits.slice(0, limit || 8).map(function (h) { return h.c; });
+  }
+
   KAYIBA.MAX_GUESSES = MAX_GUESSES;
   KAYIBA.compare = compare;
   KAYIBA.dayOfYear = dayOfYear;
   KAYIBA.birthdayLabel = birthdayLabel;
   KAYIBA.pickPortrait = pickPortrait;
+  KAYIBA.normalizeSearch = normalizeSearch;
+  KAYIBA.matchRank = matchRank;
+  KAYIBA.searchCharacters = searchCharacters;
 
   var CHARACTERS = (typeof window !== 'undefined' && window.KAYIBA_CHARACTERS) || [];
   KAYIBA.characters = CHARACTERS;
@@ -153,6 +198,7 @@
     return target;
   }
 
+  /** 提交判定:只认角色名 / 别名的完全一致。拼音仅用于联想候选,不能直接提交。 */
   function findCharacter(input) {
     var q = String(input || '').trim().toLowerCase();
     return CHARACTERS.find(function (c) {
@@ -318,12 +364,9 @@
   function closeSuggestions() { suggestions = []; $('suggestions').innerHTML = ''; $('suggestions').classList.remove('open'); }
 
   function updateSuggestions() {
-    var q = $('guess-input').value.trim().toLowerCase();
+    var q = $('guess-input').value.trim();
     if (!q) { closeSuggestions(); return; }
-    suggestions = CHARACTERS.filter(function (c) {
-      return c.nickname.toLowerCase().indexOf(q) !== -1
-        || (c.alias && c.alias.toLowerCase().indexOf(q) !== -1);
-    }).slice(0, 8);
+    suggestions = searchCharacters(CHARACTERS, q, 8);
     var list = $('suggestions');
     list.innerHTML = '';
     if (!suggestions.length) { list.classList.remove('open'); return; }
@@ -408,7 +451,7 @@
       if (!q) { toast('请输入角色名'); return; }
       var character = findCharacter(q);
       if (!character) {
-        toast('没有完全匹配的角色,请从候选项中选择后提交');
+        toast('没有完全匹配的角色(拼音仅用于联想),请点选候选项后提交');
         return;
       }
       input.value = character.nickname;

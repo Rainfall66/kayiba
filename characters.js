@@ -1,5 +1,7 @@
 // 卡一把 · 角色数据(来自卡拉彼丘WIKI)。新增/修改角色请编辑此文件。
-// 字段: nickname 角色名 / team 阵营 / role 定位(留空=未知,显示-) / weapon 武器类型 / gender 性别 / age 年龄 / birthday 生日(四位字符串 MMDD) / crystal 类型 / alias 搜索联想词 / avatar 小头像 / images 立绘数组(随机取一张)
+// 字段: nickname 角色名 / team 阵营 / role 定位(留空=未知,显示-) / weapon 武器类型 / gender 性别 / age 年龄 / birthday 生日(四位字符串 MMDD) / crystal 类型 / alias 搜索联想词 / avatar 小头像 / images 立绘数组(随机取一张) / pinyin 全拼 / pinyinAbbr 首字母缩写
+// 拼音说明: 仅在联想候选时使用, 不参与提交判定(提交只认角色名/别名完全一致)。全拼可用空格分隔多段(如角色名 + 别名拼音)。
+//   多音字需人工校正(如 令=ling、汐=xi、荆=jing、女=nv); ü 写作 v, 匹配时会与 u 互通。
 // 图片说明: 均下载自卡拉彼丘WIKI(头像 200px、立绘 320px,保留透明通道), 存于 images/ 目录, 文件名用 ASCII 拼音 slug。
 //   新增角色时: 把图片放进 images/, 在 avatar 填头像路径, 在 images 里列出 1~N 张立绘(游戏内随机展示一张)。
 // 生日格式规则: 用四位字符串 "MMDD" 表示, 一位数月份前补 0(注意 JS 数字字面量 0105 是八进制, 必须用字符串)。
@@ -17,7 +19,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/mixueer-li-avatar.png",
-  "images": ["images/mixueer-li-1.png", "images/mixueer-li-2.png", "images/mixueer-li-3.png"]
+  "images": ["images/mixueer-li-1.png", "images/mixueer-li-2.png", "images/mixueer-li-3.png"],
+  "pinyin": "mixueerli",
+  "pinyinAbbr": "mxel"
  },
  {
   "nickname": "明",
@@ -30,7 +34,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/ming-avatar.png",
-  "images": ["images/ming-1.png", "images/ming-2.png", "images/ming-3.png"]
+  "images": ["images/ming-1.png", "images/ming-2.png", "images/ming-3.png"],
+  "pinyin": "ming",
+  "pinyinAbbr": "m"
  },
  {
   "nickname": "星绘",
@@ -43,7 +49,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/xinghui-avatar.png",
-  "images": ["images/xinghui-1.png", "images/xinghui-2.png", "images/xinghui-3.png"]
+  "images": ["images/xinghui-1.png", "images/xinghui-2.png", "images/xinghui-3.png"],
+  "pinyin": "xinghui",
+  "pinyinAbbr": "xh"
  },
  {
   "nickname": "玛德蕾娜·利里",
@@ -56,7 +64,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/madeleina-lili-avatar.png",
-  "images": ["images/madeleina-lili-1.png", "images/madeleina-lili-2.png", "images/madeleina-lili-3.png"]
+  "images": ["images/madeleina-lili-1.png", "images/madeleina-lili-2.png", "images/madeleina-lili-3.png"],
+  "pinyin": "madeleinalili",
+  "pinyinAbbr": "mdlnll"
  },
  {
   "nickname": "香奈美",
@@ -69,7 +79,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/xiangnaimei-avatar.png",
-  "images": ["images/xiangnaimei-1.png", "images/xiangnaimei-2.png", "images/xiangnaimei-3.png"]
+  "images": ["images/xiangnaimei-1.png", "images/xiangnaimei-2.png", "images/xiangnaimei-3.png"],
+  "pinyin": "xiangnaimei",
+  "pinyinAbbr": "xnm"
  },
  {
   "nickname": "白墨",
@@ -82,7 +94,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/baimo-avatar.png",
-  "images": ["images/baimo-1.png", "images/baimo-2.png", "images/baimo-3.png"]
+  "images": ["images/baimo-1.png", "images/baimo-2.png", "images/baimo-3.png"],
+  "pinyin": "baimo",
+  "pinyinAbbr": "bm"
  },
  {
   "nickname": "信",
@@ -95,7 +109,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/xin-avatar.png",
-  "images": ["images/xin-1.png", "images/xin-2.png", "images/xin-3.png"]
+  "images": ["images/xin-1.png", "images/xin-2.png", "images/xin-3.png"],
+  "pinyin": "xin",
+  "pinyinAbbr": "x"
  },
  {
   "nickname": "心夏",
@@ -108,7 +124,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/xinxia-avatar.png",
-  "images": ["images/xinxia-1.png", "images/xinxia-2.png", "images/xinxia-3.png"]
+  "images": ["images/xinxia-1.png", "images/xinxia-2.png", "images/xinxia-3.png"],
+  "pinyin": "xinxia",
+  "pinyinAbbr": "xx"
  },
  {
   "nickname": "伊薇特",
@@ -121,7 +139,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/yiweite-avatar.png",
-  "images": ["images/yiweite-1.png", "images/yiweite-2.png", "images/yiweite-3.png"]
+  "images": ["images/yiweite-1.png", "images/yiweite-2.png", "images/yiweite-3.png"],
+  "pinyin": "yiweite",
+  "pinyinAbbr": "ywt"
  },
  {
   "nickname": "芙拉薇娅",
@@ -134,7 +154,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/fulaweiya-avatar.png",
-  "images": ["images/fulaweiya-1.png", "images/fulaweiya-2.png", "images/fulaweiya-3.png"]
+  "images": ["images/fulaweiya-1.png", "images/fulaweiya-2.png", "images/fulaweiya-3.png"],
+  "pinyin": "fulaweiya",
+  "pinyinAbbr": "flwy"
  },
  {
   "nickname": "忧雾",
@@ -147,7 +169,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/youwu-avatar.png",
-  "images": ["images/youwu-1.png", "images/youwu-2.png", "images/youwu-3.png"]
+  "images": ["images/youwu-1.png", "images/youwu-2.png", "images/youwu-3.png"],
+  "pinyin": "youwu",
+  "pinyinAbbr": "yw"
  },
  {
   "nickname": "蕾欧娜",
@@ -160,7 +184,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/leiouna-avatar.png",
-  "images": ["images/leiouna-1.png", "images/leiouna-2.png", "images/leiouna-3.png"]
+  "images": ["images/leiouna-1.png", "images/leiouna-2.png", "images/leiouna-3.png"],
+  "pinyin": "leiouna",
+  "pinyinAbbr": "lon"
  },
  {
   "nickname": "千代",
@@ -173,7 +199,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/qiandai-avatar.png",
-  "images": ["images/qiandai-1.png", "images/qiandai-2.png", "images/qiandai-3.png"]
+  "images": ["images/qiandai-1.png", "images/qiandai-2.png", "images/qiandai-3.png"],
+  "pinyin": "qiandai",
+  "pinyinAbbr": "qd"
  },
  {
   "nickname": "拉薇",
@@ -186,7 +214,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/lawei-avatar.png",
-  "images": ["images/lawei-1.png", "images/lawei-2.png", "images/lawei-3.png"]
+  "images": ["images/lawei-1.png", "images/lawei-2.png", "images/lawei-3.png"],
+  "pinyin": "lawei",
+  "pinyinAbbr": "lw"
  },
  {
   "nickname": "梅瑞狄斯",
@@ -199,7 +229,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/meiruidisi-avatar.png",
-  "images": ["images/meiruidisi-1.png", "images/meiruidisi-2.png", "images/meiruidisi-3.png"]
+  "images": ["images/meiruidisi-1.png", "images/meiruidisi-2.png", "images/meiruidisi-3.png"],
+  "pinyin": "meiruidisi",
+  "pinyinAbbr": "mrds"
  },
  {
   "nickname": "令",
@@ -212,7 +244,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/ling-avatar.png",
-  "images": ["images/ling-1.png", "images/ling-2.png", "images/ling-3.png"]
+  "images": ["images/ling-1.png", "images/ling-2.png", "images/ling-3.png"],
+  "pinyin": "ling",
+  "pinyinAbbr": "l"
  },
  {
   "nickname": "艾卡",
@@ -225,7 +259,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/aika-avatar.png",
-  "images": ["images/aika-1.png", "images/aika-2.png", "images/aika-3.png"]
+  "images": ["images/aika-1.png", "images/aika-2.png", "images/aika-3.png"],
+  "pinyin": "aika",
+  "pinyinAbbr": "ak"
  },
  {
   "nickname": "珐格兰丝",
@@ -238,7 +274,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/fagelansi-avatar.png",
-  "images": ["images/fagelansi-1.png", "images/fagelansi-2.png", "images/fagelansi-3.png"]
+  "images": ["images/fagelansi-1.png", "images/fagelansi-2.png", "images/fagelansi-3.png"],
+  "pinyin": "fagelansi",
+  "pinyinAbbr": "fgls"
  },
  {
   "nickname": "玛拉",
@@ -251,7 +289,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/mala-avatar.png",
-  "images": ["images/mala-1.png", "images/mala-2.png", "images/mala-3.png"]
+  "images": ["images/mala-1.png", "images/mala-2.png", "images/mala-3.png"],
+  "pinyin": "mala",
+  "pinyinAbbr": "ml"
  },
  {
   "nickname": "奥黛丽·格罗夫",
@@ -264,7 +304,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/aodaili-geluofu-avatar.png",
-  "images": ["images/aodaili-geluofu-1.png", "images/aodaili-geluofu-2.png", "images/aodaili-geluofu-3.png"]
+  "images": ["images/aodaili-geluofu-1.png", "images/aodaili-geluofu-2.png", "images/aodaili-geluofu-3.png"],
+  "pinyin": "aodailigeluofu",
+  "pinyinAbbr": "adlglf"
  },
  {
   "nickname": "绯莎",
@@ -277,7 +319,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/feisha-avatar.png",
-  "images": ["images/feisha-1.png", "images/feisha-2.png", "images/feisha-3.png"]
+  "images": ["images/feisha-1.png", "images/feisha-2.png", "images/feisha-3.png"],
+  "pinyin": "feisha",
+  "pinyinAbbr": "fs"
  },
  {
   "nickname": "加拉蒂亚·利里",
@@ -290,7 +334,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/jialadiya-lili-avatar.png",
-  "images": ["images/jialadiya-lili-1.png", "images/jialadiya-lili-2.png", "images/jialadiya-lili-3.png"]
+  "images": ["images/jialadiya-lili-1.png", "images/jialadiya-lili-2.png", "images/jialadiya-lili-3.png"],
+  "pinyin": "jialadiyalili",
+  "pinyinAbbr": "jldyll"
  },
  {
   "nickname": "汐",
@@ -303,7 +349,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/xi-avatar.png",
-  "images": ["images/xi-1.png", "images/xi-2.png", "images/xi-3.png"]
+  "images": ["images/xi-1.png", "images/xi-2.png", "images/xi-3.png"],
+  "pinyin": "xi",
+  "pinyinAbbr": "x"
  },
  {
   "nickname": "诺诺",
@@ -316,7 +364,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "超弦体",
   "alias": "",
   "avatar": "images/nuonuo-avatar.png",
-  "images": ["images/nuonuo-1.png", "images/nuonuo-2.png"]
+  "images": ["images/nuonuo-1.png", "images/nuonuo-2.png"],
+  "pinyin": "nuonuo",
+  "pinyinAbbr": "nn"
  },
  {
   "nickname": "爆裂魔怪",
@@ -329,7 +379,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "晶源体",
   "alias": "贝利亚",
   "avatar": "images/baoliemoguai-avatar.png",
-  "images": ["images/baoliemoguai-1.png"]
+  "images": ["images/baoliemoguai-1.png"],
+  "pinyin": "baoliemoguai beiliya",
+  "pinyinAbbr": "blmg bly"
  },
  {
   "nickname": "刺镰魔怪",
@@ -342,7 +394,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "晶源体",
   "alias": "粉莓",
   "avatar": "images/cilianmoguai-avatar.png",
-  "images": ["images/cilianmoguai-1.png"]
+  "images": ["images/cilianmoguai-1.png"],
+  "pinyin": "cilianmoguai fenmei",
+  "pinyinAbbr": "clmg fm"
  },
  {
   "nickname": "莉莉丝",
@@ -355,7 +409,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "晶源体",
   "alias": "",
   "avatar": "images/lilisi-avatar.png",
-  "images": ["images/lilisi-1.png", "images/lilisi-2.png", "images/lilisi-3.png"]
+  "images": ["images/lilisi-1.png", "images/lilisi-2.png", "images/lilisi-3.png"],
+  "pinyin": "lilisi",
+  "pinyinAbbr": "lls"
  },
  {
   "nickname": "冥荆皇女",
@@ -368,7 +424,9 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "晶源体",
   "alias": "蓝莓",
   "avatar": "images/mingjinghuangnv-avatar.png",
-  "images": ["images/mingjinghuangnv-1.png"]
+  "images": ["images/mingjinghuangnv-1.png"],
+  "pinyin": "mingjinghuangnv lanmei",
+  "pinyinAbbr": "mjhn lm"
  },
  {
   "nickname": "血荆皇女",
@@ -381,6 +439,8 @@ window.KAYIBA_CHARACTERS = [
   "crystal": "晶源体",
   "alias": "草莓",
   "avatar": "images/xuejinghuangnv-avatar.png",
-  "images": ["images/xuejinghuangnv-1.png"]
+  "images": ["images/xuejinghuangnv-1.png"],
+  "pinyin": "xuejinghuangnv caomei",
+  "pinyinAbbr": "xjhn cm"
  }
 ];
