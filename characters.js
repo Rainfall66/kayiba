@@ -26,7 +26,7 @@ window.KAYIBA_CHARACTERS = [
  {
   "nickname": "明",
   "team": "剪刀手",
-  "role": "决斗",
+  "role": "突击",
   "weapon": "自动步枪",
   "gender": "女",
   "age": 20,
@@ -146,7 +146,7 @@ window.KAYIBA_CHARACTERS = [
  {
   "nickname": "芙拉薇娅",
   "team": "欧泊",
-  "role": "决斗",
+  "role": "突击",
   "weapon": "微型冲锋枪",
   "gender": "女",
   "age": 26,
@@ -281,7 +281,7 @@ window.KAYIBA_CHARACTERS = [
  {
   "nickname": "玛拉",
   "team": "剪刀手",
-  "role": "决斗",
+  "role": "突击",
   "weapon": "微型冲锋枪",
   "gender": "女",
   "age": 36,
@@ -341,7 +341,7 @@ window.KAYIBA_CHARACTERS = [
  {
   "nickname": "汐",
   "team": "乌尔比诺",
-  "role": "决斗",
+  "role": "突击",
   "weapon": "霰弹枪",
   "gender": "女",
   "age": 19,
